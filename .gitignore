@@ -1,3 +1,2 @@
-.idea
-IN2010-Algoritmer/out
-IN2010-Algoritmer/venv
+*.idea
+*out
