@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbcd5b24-faad-44c4-ac85-858ccd95a192" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/KotlinJavaRuntime.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IN2010-Algoritmer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Kode/.idea/Kode.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/binarySearch/binarySearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/binarySearch/binarySearch.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/IN2010-Algoritmer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Kode/algoritmer/binarySearch.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +133,8 @@
       <option name="presentableId" value="Default" />
       <updated>1629925066858</updated>
       <workItem from="1629925069269" duration="318000" />
-      <workItem from="1629925410762" duration="4190000" />
+      <workItem from="1629925410762" duration="4741000" />
+      <workItem from="1629995847064" duration="643000" />
     </task>
     <servers />
   </component>
@@ -157,10 +146,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="887" y="204" key="#Plugins/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629925387187" />
-    <state x="1450" y="232" key="#Project_Structure" timestamp="1629926734328">
+    <state x="384" y="174" key="#Project_Structure" timestamp="1629995885912">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1450" y="232" key="#Project_Structure/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629926734328" />
+    <state x="384" y="174" key="#Project_Structure/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629995885912" />
     <state x="749" y="218" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1629925639155">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -169,22 +158,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1075" y="318" key="FileChooserDialogImpl/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629925637865" />
-    <state width="2517" height="229" key="GridCell.Tab.0.bottom" timestamp="1629928406568">
+    <state width="2517" height="229" key="GridCell.Tab.0.bottom" timestamp="1629930160208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="229" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629928406568" />
-    <state width="2517" height="229" key="GridCell.Tab.0.center" timestamp="1629928406567">
+    <state width="2517" height="229" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629930160208" />
+    <state width="2517" height="229" key="GridCell.Tab.0.center" timestamp="1629930160208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="229" key="GridCell.Tab.0.center/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629928406567" />
-    <state width="2517" height="229" key="GridCell.Tab.0.left" timestamp="1629928406567">
+    <state width="2517" height="229" key="GridCell.Tab.0.center/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629930160208" />
+    <state width="2517" height="229" key="GridCell.Tab.0.left" timestamp="1629930160208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="229" key="GridCell.Tab.0.left/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629928406567" />
-    <state width="2517" height="229" key="GridCell.Tab.0.right" timestamp="1629928406567">
+    <state width="2517" height="229" key="GridCell.Tab.0.left/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629930160208" />
+    <state width="2517" height="229" key="GridCell.Tab.0.right" timestamp="1629930160208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="229" key="GridCell.Tab.0.right/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629928406567" />
+    <state width="2517" height="229" key="GridCell.Tab.0.right/0.0.2560.1400/2560.87.1920.1160@0.0.2560.1400" timestamp="1629930160208" />
     <state x="1450" y="232" key="SettingsEditor" timestamp="1629926067955">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
