@@ -121,8 +121,8 @@ public class AVLTree {
             Node u = findMin(v.right);
             v.x = u.x;
             v.right = remove(v.right, u.x);
+            v.height = 1 + Math.max( height(v.left), height(v.right) );
         }
-        v.height = 1 + Math.max( height(v.left), height(v.right) );
         return balance(v);
     }
 
@@ -203,7 +203,7 @@ public class AVLTree {
 
     public static void main(String[] args) {
         AVLTree t= new AVLTree();
-
+        System.out.println(">> 5, 4, 8, 3, 5, 7, 9");
         t.insert(5);
         t.insert(4);
         t.insert(8);
@@ -211,29 +211,18 @@ public class AVLTree {
         t.insert(5);
         t.insert(7);
         t.insert(9);
-        System.out.println("---------------------------------");
-        System.out.printf("     %s", t.root.x);
-        System.out.printf("\n   %s", t.root.left.x);
-        System.out.printf("   %s", t.root.right.x);
-        System.out.printf("\n  %s", t.root.left.left.x);
-        System.out.printf(" %s", " ");
-        System.out.printf(" %s", t.root.right.left.x);
-        System.out.printf(" %s\n", t.root.right.right.x);
-        System.out.println("---------------------------------");
-        System.out.println("Før remove");
-        System.out.println("6: "+t.contains(6));
-        System.out.println("7: "+t.contains(7));
-        System.out.println("5: "+t.contains(5));
-        System.out.println("9: "+t.contains(9));
 
-//        System.out.println("\nFjerner 6 og 7");
-//        t.remove(6);
-//        t.remove(7);
-
-        System.out.println("\nEtter remove");
-        System.out.println("6: "+t.contains(6));
+        System.out.println("\n3: "+t.contains(3));
+        System.out.println("12: "+t.contains(12));
         System.out.println("7: "+t.contains(7));
-        System.out.println("5: "+t.contains(5));
+
+        System.out.println("> Fjerner 3 og 7 <");
+        t.remove(3);
+        t.remove(7);
+
+        System.out.println("3: "+t.contains(3));
+        System.out.println("12: "+t.contains(12));
+        System.out.println("7: "+t.contains(7));
         System.out.println("---------------------------------");
 
         System.out.println("Root: "+t.root.x);
@@ -247,12 +236,20 @@ public class AVLTree {
         t.preorder();
         System.out.println("\n---------------------------------");
 
-        System.out.println("\n\nminste: "+t.findMin(t.root).x);
+        System.out.println("\nminste: "+t.findMin(t.root).x);
         System.out.println("største: "+t.findMax(t.root).x);
         System.out.println("høyde: "+t.height(t.root));
 
         System.out.print("\n---------------------------------");
-        // diagram-test
+        print2D(t.root);
+        System.out.println("---------------------------------");
+        System.out.print("add: 12 og 6");
+        t.insert(12);
+        t.insert(6);
+        print2D(t.root);
+        System.out.println("---------------------------------");
+        System.out.print("remove: 5");
+        t.remove(5);
         print2D(t.root);
         System.out.println("---------------------------------");
     }
