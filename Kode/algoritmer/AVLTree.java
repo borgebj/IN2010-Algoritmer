@@ -15,6 +15,7 @@ public class AVLTree {
 
     Node root;
 
+
     /*
             Z                Y
          T0  Y           Z      X
@@ -43,8 +44,8 @@ public class AVLTree {
         y.right = z;
         z.left = t2;
 
-        z.height = Math.max( height(z.left), height(z.right) );
-        y.height = Math.max( height(y.left), height(y.right) );
+        z.height = 1 + Math.max( height(z.left), height(z.right) );
+        y.height = 1 + Math.max( height(y.left), height(y.right) );
 
         return y;
     }
@@ -53,25 +54,23 @@ public class AVLTree {
     // positivt = venstretung - høyrerotasjon
     // negativt = høyretung - venstrerotasjon
     int balanceFactor(Node v) {
-        if (v == null) {
+        if (v == null)
             return 0;
-        }
-        return height(v.left) - height(v.right);
+        return (height(v.left) - height(v.right));
     }
 
     Node balance(Node v) {
         // høyretung
-        if (balanceFactor(v) < 1) {
-            if (balanceFactor(v.right) > 0) {
+        if (balanceFactor(v) < -1) {
+            if (balanceFactor(v.right) > 0)
                 v.right = rightRotate(v.right);
-            }
             return leftRotate(v);
         }
+
         // venstretung
         if (balanceFactor(v) > 1) {
-            if (balanceFactor(v.left) < 0) {
-                v.left = leftRotate(v);
-            }
+            if (balanceFactor(v.left) < 0)
+                v.left = leftRotate(v.left);
             return rightRotate(v);
         }
         return v;
@@ -81,40 +80,43 @@ public class AVLTree {
     void insert(int x) {
         root = insert(root, x);
     }
-    // støtter ikke duplikater
     Node insert(Node v, int x) {
-        if (v == null) {
+        if (v == null)
             v =  new Node(x);
-        }
-        else if (x < v.x) {
+
+        else if (x < v.x)
             v.left = insert(v.left, x);
-        }
-        else if (x > v.x) {
+
+        else if (x > v.x)
             v.right = insert(v.right, x);
-        }
+
         v.height = 1 + Math.max( height(v.left), height(v.right) );
         return balance(v);
     }
+
+
     /** balance-remove **/
     void remove(int x) {
         root = remove(root, x);
     }
     Node remove(Node v, int x) {
-        if (v == null) {
+        if (v == null)
             return null;
-        }
-        if (x < v.x) {
+
+        if (x < v.x)
             v.left = remove(v.left, x);
-        }
-        else if (x > v.x) {
+
+        else if (x > v.x)
             v.right = remove(v.right, x);
-        }
-        else if (v.left == null) {
+
+        // case 2: har kun 1-barnenode
+        else if (v.left == null)
             v = v.right;
-        }
-        else if (v.right == null) {
+
+        else if (v.right == null)
             v = v.left;
-        }
+
+        // case 3: har begge barnenoder
         else {
             Node u = findMin(v.right);
             v.x = u.x;
@@ -131,15 +133,15 @@ public class AVLTree {
     }
     // sjekker om x finnes i treet
     boolean contains(Node v, int x) {
-        if (v == null) {
+        if (v == null)
             return false;
-        }
-        if (x < v.x) {
+
+        if (x < v.x)
             return contains(v.left, x);
-        }
-        if (x > v.x) {
+
+        if (x > v.x)
             return contains(v.right, x);
-        }
+
         return true;
     }
 
@@ -161,11 +163,23 @@ public class AVLTree {
     }
     void postorder(Node v) {
         if (v == null) return;
+        postorder(v.left);
+        postorder(v.right);
+        System.out.print(v.x+" ");
+    }
+
+    /** preorder **/
+    void preorder() {
+        preorder(root);
+    }
+    void preorder(Node v) {
+        if (v == null) return;
         System.out.print(v.x+" ");
         postorder(v.left);
         postorder(v.right);
     }
 
+    /** hjelpemtoder **/
     Node findMin(Node v) {
         if (v == null || v.left == null) {
             return v;
@@ -181,9 +195,8 @@ public class AVLTree {
     }
 
     int height(Node v) {
-        if (v == null) {
-            return -1;
-        }
+        if (v == null)
+            return 0;
         return Math.max(height(v.left), height(v.right)) + 1;
     }
 
@@ -192,34 +205,82 @@ public class AVLTree {
         AVLTree t= new AVLTree();
 
         t.insert(5);
+        t.insert(4);
+        t.insert(8);
         t.insert(3);
-        t.insert(12);
-        t.insert(2);
-        t.insert(6);
-        t.insert(9);
+        t.insert(5);
         t.insert(7);
-
+        t.insert(9);
+        System.out.println("---------------------------------");
+        System.out.printf("     %s", t.root.x);
+        System.out.printf("\n   %s", t.root.left.x);
+        System.out.printf("   %s", t.root.right.x);
+        System.out.printf("\n  %s", t.root.left.left.x);
+        System.out.printf(" %s", " ");
+        System.out.printf(" %s", t.root.right.left.x);
+        System.out.printf(" %s\n", t.root.right.right.x);
+        System.out.println("---------------------------------");
+        System.out.println("Før remove");
         System.out.println("6: "+t.contains(6));
         System.out.println("7: "+t.contains(7));
         System.out.println("5: "+t.contains(5));
         System.out.println("9: "+t.contains(9));
 
-        System.out.println("\nFjerner 6 og 7");
-        t.remove(6);
-        t.remove(7);
+//        System.out.println("\nFjerner 6 og 7");
+//        t.remove(6);
+//        t.remove(7);
 
+        System.out.println("\nEtter remove");
         System.out.println("6: "+t.contains(6));
         System.out.println("7: "+t.contains(7));
         System.out.println("5: "+t.contains(5));
+        System.out.println("---------------------------------");
 
-        System.out.println("\nPrinter inorder");
+        System.out.println("Root: "+t.root.x);
+        System.out.println("Printer inorder (left-root-right)");
         t.inorder();
 
-        System.out.println("\nPrinter postorder");
+        System.out.println("\nPrinter postorder (left-right-root)");
         t.postorder();
 
-        System.out.println("minste: "+t.findMin(t.root).x);
+        System.out.println("\nPrinter preorder (root-left-right)");
+        t.preorder();
+        System.out.println("\n---------------------------------");
+
+        System.out.println("\n\nminste: "+t.findMin(t.root).x);
         System.out.println("største: "+t.findMax(t.root).x);
         System.out.println("høyde: "+t.height(t.root));
+
+        System.out.print("\n---------------------------------");
+        // diagram-test
+        print2D(t.root);
+        System.out.println("---------------------------------");
+    }
+
+    // tatt fra internett - lager en 2d illustrasjon av treet   (https://www.geeksforgeeks.org/print-binary-tree-2-dimensions/)
+    static final int COUNT = 10;
+    static void print2D(Node root) {
+        print2DUtil(root, 0);
+    }
+    static void print2DUtil(Node root, int space) {
+        // Base case
+        if (root == null)
+            return;
+
+        // Increase distance between levels
+        space += COUNT;
+
+        // Process right child first
+        print2DUtil(root.right, space);
+
+        // Print current node after space
+        // count
+        System.out.print("\n");
+        for (int i = COUNT; i < space; i++)
+            System.out.print(" ");
+        System.out.print(root.x + "\n");
+
+        // Process left child
+        print2DUtil(root.left, space);
     }
 }
