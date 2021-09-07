@@ -33,7 +33,7 @@ def binarySearch(A, x):
     low = 0
     high = len(A)
 
-    while low < high:
+    while low <= high:
         mid = int((low + high)/2)
 
         if A[mid] == x:
