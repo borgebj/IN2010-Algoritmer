@@ -123,6 +123,9 @@ public class AVLTree {
             v.right = remove(v.right, u.x);
             v.height = 1 + Math.max( height(v.left), height(v.right) );
         }
+
+        // det står her i forelesningen, men ↑ fungerer, ikke ↓. Spør?
+        //v.height = 1 + Math.max( height(v.left), height(v.right) );
         return balance(v);
     }
 
