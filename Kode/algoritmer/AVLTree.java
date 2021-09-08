@@ -16,6 +16,7 @@ public class AVLTree {
         }
     }
 
+    // første element - roten til treet / starten
     Node root;
 
 
@@ -159,7 +160,7 @@ public class AVLTree {
     void inorder(Node v) {
         if (v == null) return;
         inorder(v.left);
-        System.out.print(v.x+" ");
+        System.out.print(v.x+"  ");
         inorder(v.right);
     }
 
@@ -171,7 +172,7 @@ public class AVLTree {
         if (v == null) return;
         postorder(v.left);
         postorder(v.right);
-        System.out.print(v.x+" ");
+        System.out.print(v.x+"  ");
     }
 
     /** preorder **/
@@ -180,7 +181,7 @@ public class AVLTree {
     }
     void preorder(Node v) {
         if (v == null) return;
-        System.out.print(v.x+" ");
+        System.out.print(v.x+"  ");
         postorder(v.left);
         postorder(v.right);
     }
@@ -260,8 +261,9 @@ public class AVLTree {
         t.insert(3);
         print(t.root);
         System.out.println("\n----------------------------------------------------------------");
-        System.out.print("remove: 5\n");
+        System.out.print("remove: 5 og 11\n");
         t.remove(5);
+        t.remove(11);
         print(t.root);
         System.out.println("----------------------------------------------------------------");
     }
