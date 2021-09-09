@@ -20,13 +20,7 @@ public class AVLTree {
     Node root;
 
 
-    /*
-            Z                Y
-         T0  Y           Z      X
-           T1  X       T0 T1  T2 T3
-             T2 T3
 
-     */
     /** rotasjoner **/
     Node leftRotate(Node z) {
         Node y = z.right;
@@ -80,9 +74,10 @@ public class AVLTree {
         return v;
     }
 
-    /** balance-insert **/
-    void insert(int x) {
-        root = insert(root, x);
+    /** balance-insert **/// støtter inserting av 1 eller flere
+    void insert(int... args) {
+        for (int arg : args)
+            root = insert(root, arg);
     }
     Node insert(Node v, int x) {
         if (v == null)
@@ -207,69 +202,8 @@ public class AVLTree {
         return Math.max(height(v.left), height(v.right)) + 1;
     }
 
-
-    public static void main(String[] args) {
-        AVLTree t= new AVLTree();
-
-        t.insert(5);
-        t.insert(8);
-        t.insert(10);
-        t.insert(9);
-        t.insert(7);
-        t.insert(6);
-        t.insert(2);
-        t.insert(1);
-        t.insert(0);
-        t.insert(-1);
-        t.insert(11);
-        t.insert(13);
-        t.insert(16);
-
-        System.out.println("\n3: "+t.contains(3));
-        System.out.println("12: "+t.contains(12));
-        System.out.println("7: "+t.contains(7));
-
-        System.out.println("> Fjerner 3 og 7 <");
-        t.remove(3);
-        t.remove(7);
-
-        System.out.println("3: "+t.contains(3));
-        System.out.println("12: "+t.contains(12));
-        System.out.println("7: "+t.contains(7));
-        System.out.println("---------------------------------");
-
-        System.out.println("Root: "+t.root.x);
-        System.out.println("Printer inorder (left-root-right)");
-        t.inorder();
-
-        System.out.println("\nPrinter postorder (left-right-root)");
-        t.postorder();
-
-        System.out.println("\nPrinter preorder (root-left-right)");
-        t.preorder();
-        System.out.println("\n----------------------------------------------------------------");
-
-        System.out.println("\nminste: "+t.findMin(t.root).x);
-        System.out.println("største: "+t.findMax(t.root).x);
-        System.out.println("høyde: "+t.height(t.root));
-
-        System.out.print("\n----------------------------------------------------------------\n");
-        print(t.root);
-        System.out.println("----------------------------------------------------------------");
-        System.out.print("add: 12 og 3\n");
-        t.insert(12);
-        t.insert(3);
-        print(t.root);
-        System.out.println("\n----------------------------------------------------------------");
-        System.out.print("remove: 5 og 11\n");
-        t.remove(5);
-        t.remove(11);
-        print(t.root);
-        System.out.println("----------------------------------------------------------------");
-    }
-
     // broken metode - printer ut et FINT tre https://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram-in-java
-    public static void print(Node root) {
+    void print() {
         List<List<String>> lines = new ArrayList<List<String>>();
 
         List<Node> level = new ArrayList<Node>();
@@ -328,7 +262,7 @@ public class AVLTree {
                         if (line.get(j - 1) != null) {
                             c = (line.get(j) != null) ? '┴' : '┘';
                         } else {
-                            if (j < line.size() && line.get(j) != null) c = '└';
+                            if (line.get(j) != null) c = '└';
                         }
                     }
                     System.out.print(c);
@@ -353,9 +287,8 @@ public class AVLTree {
             }
 
             // print line of numbers
-            for (int j = 0; j < line.size(); j++) {
+            for (String f : line) {
 
-                String f = line.get(j);
                 if (f == null) f = "";
                 int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
                 int gap2 = (int) Math.floor(perpiece / 2f - f.length() / 2f);
@@ -373,5 +306,64 @@ public class AVLTree {
 
             perpiece /= 2;
         }
+    }
+
+    public static void main(String[] args) {
+        AVLTree t= new AVLTree();
+
+        t.insert(5, 8, 10, 9, 7, 6);
+        t.insert(2, 1, 0, -1, 11, 13, 16);
+
+        System.out.println("\n3: "+t.contains(3));
+        System.out.println("12: "+t.contains(12));
+        System.out.println("7: "+t.contains(7));
+
+        System.out.println("> Fjerner 3 og 7 <");
+        t.remove(3);
+        t.remove(7);
+
+        System.out.println("3: "+t.contains(3));
+        System.out.println("12: "+t.contains(12));
+        System.out.println("7: "+t.contains(7));
+        System.out.println("---------------------------------");
+
+        System.out.println("Root: "+t.root.x);
+        System.out.println("Printer inorder (left-root-right)");
+        t.inorder();
+
+        System.out.println("\nPrinter postorder (left-right-root)");
+        t.postorder();
+
+        System.out.println("\nPrinter preorder (root-left-right)");
+        t.preorder();
+        System.out.println("\n----------------------------------------------------------------");
+
+        System.out.println("\nminste: "+t.findMin(t.root).x);
+        System.out.println("største: "+t.findMax(t.root).x);
+        System.out.println("høyde: "+t.height(t.root));
+
+        System.out.print("\n----------------------------------------------------------------\n");
+        t.print();
+        System.out.println("----------------------------------------------------------------");
+        System.out.print("add: 12 og 3\n");
+        t.insert(12, 3);
+        t.print();
+        System.out.println("\n----------------------------------------------------------------");
+        System.out.print("remove: 5 og 11\n");
+        t.remove(5);
+        t.remove(11);
+        t.print();
+        System.out.println("----------------------------------------------------------------");
+
+        BinarySearchTree bst = new BinarySearchTree();
+        AVLTree avl = new AVLTree();
+        bst.insert( 1, 6, 9, 2, 3, -1, -3);
+        avl.insert( 1, 6, 9, 2, 3, -1, -3);
+
+        System.out.println("\n\n - Sammenligning av BSt og AVL - ");
+        System.out.println("BST - Binary search tree");
+        bst.print();
+        System.out.println("\nAVL - Balansert BST");
+        avl.print();
     }
 }

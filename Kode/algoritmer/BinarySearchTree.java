@@ -18,10 +18,10 @@ public class BinarySearchTree {
 
     Node root;
 
-    void insert(int x) {
-        root = insert(root, x);
+    void insert(int... args) {
+        for (int arg : args)
+            root = insert(root, arg);
     }
-
     // støtter ikke duplikater
     Node insert(Node v, int x) {
         if (v == null) {
@@ -111,50 +111,8 @@ public class BinarySearchTree {
         postorder(v.right);
     }
 
-
-    public static void main(String[] args) {
-        BinarySearchTree t = new BinarySearchTree();
-
-        t.insert(5);
-        t.insert(8);
-        t.insert(10);
-        t.insert(9);
-        t.insert(7);
-        t.insert(6);
-        t.insert(2);
-        t.insert(1);
-        t.insert(0);
-        t.insert(-1);
-        t.insert(11);
-        t.insert(13);
-        t.insert(16);
-
-        System.out.println("6: "+t.contains(6));
-        System.out.println("7: "+t.contains(7));
-        System.out.println("5: "+t.contains(5));
-        System.out.println("9: "+t.contains(9));
-
-        System.out.println("\nFjerner 6 og 7");
-        t.remove(6);
-        t.remove(7);
-
-        System.out.println("6: "+t.contains(6));
-        System.out.println("7: "+t.contains(7));
-        System.out.println("5: "+t.contains(5));
-
-        System.out.println("\nPrinter inorder");
-        t.inorder();
-
-        System.out.println("\nPrinter postorder");
-        t.postorder();
-
-        System.out.print("\n-------------------------------------------------\n\n");
-        print(t.root);
-        System.out.println("\n-------------------------------------------------");
-    }
-
     // broken metode - printer ut et FINT tre https://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram-in-java
-    public static void print(BinarySearchTree.Node root) {
+    void print() {
         List<List<String>> lines = new ArrayList<List<String>>();
 
         List<BinarySearchTree.Node> level = new ArrayList<BinarySearchTree.Node>();
@@ -213,7 +171,7 @@ public class BinarySearchTree {
                         if (line.get(j - 1) != null) {
                             c = (line.get(j) != null) ? '┴' : '┘';
                         } else {
-                            if (j < line.size() && line.get(j) != null) c = '└';
+                            if (line.get(j) != null) c = '└';
                         }
                     }
                     System.out.print(c);
@@ -238,9 +196,8 @@ public class BinarySearchTree {
             }
 
             // print line of numbers
-            for (int j = 0; j < line.size(); j++) {
+            for (String f : line) {
 
-                String f = line.get(j);
                 if (f == null) f = "";
                 int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
                 int gap2 = (int) Math.floor(perpiece / 2f - f.length() / 2f);
@@ -258,5 +215,46 @@ public class BinarySearchTree {
 
             perpiece /= 2;
         }
+    }
+
+    public static void main(String[] args) {
+        BinarySearchTree t = new BinarySearchTree();
+
+        t.insert(5, 10, 9, 7, 3);
+        t.insert(2, 1, 0, -1, 11, 13, 16);
+
+        System.out.println("\n3: "+t.contains(3));
+        System.out.println("12: "+t.contains(12));
+        System.out.println("7: "+t.contains(7));
+
+        System.out.println("> Fjerner 3 og 7 <");
+        t.remove(3);
+        t.remove(7);
+
+        System.out.println("3: "+t.contains(3));
+        System.out.println("12: "+t.contains(12));
+        System.out.println("7: "+t.contains(7));
+        System.out.println("---------------------------------");
+
+        System.out.println("Root: "+t.root.x);
+        System.out.println("Printer inorder (left-root-right)");
+        t.inorder();
+
+        System.out.println("\nPrinter postorder");
+        t.postorder();
+        System.out.println("\n----------------------------------------------------------------");
+
+        t.print();
+        System.out.println("----------------------------------------------------------------");
+        System.out.print("add: 12 og 3\n");
+        t.insert(12, 3);
+        t.print();
+        System.out.println("\n----------------------------------------------------------------");
+        System.out.print("remove: 5 og 11\n");
+        t.remove(5);
+        t.remove(11);
+        t.print();
+        System.out.print("-------------------------------------------------\n\n");
+        t.print();
     }
 }
