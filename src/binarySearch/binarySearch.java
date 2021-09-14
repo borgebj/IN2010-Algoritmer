@@ -11,10 +11,12 @@ public class binarySearch {
             list.add(i);
         }
         int tall = 123;
+        int tall = 155;
 
         // simple search
         System.out.println("Simple search:");
-        System.out.println("Fant tall: "+simpleSearch(list, tall));
+        System.out.println("Fant tall:"+tall+" "+simpleSearch(list, tall));
+        System.out.println("Fant tall:"+tall2+" "+simpleSearch(list, tall2));
 
         // Binary search
         System.out.println("\nBinary Search:");
