@@ -1,21 +1,24 @@
 package obliger.oblig1;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Teque<T> {
+class Teque {
 
-    private class Node {
-        protected T data;
+    protected static Node root;
+
+    private static class Node {
+        protected int data;
         protected Node neste;
 
-        Node(T data) { this.data = data; }
+        Node(int data) { this.data = data; }
     }
 
-    protected Node root;
 
 
     // setter nytt element x helt foran i listen (starten) o - x - x
-    public void push_front(T x) {
+    public static void push_front(int x) {
         Node ny = new Node(x);
         if (root != null) {
             ny.neste = root;
@@ -24,7 +27,7 @@ public class Teque<T> {
     }
 
     // setter nytt element x bakerst i listen (slutten) x - x - o
-    public void push_back(T x) {
+    public static void push_back(int x) {
         Node ny = new Node(x);
         if (root == null) { root = ny; }
         else {
@@ -37,7 +40,7 @@ public class Teque<T> {
     }
 
     // setter nytt element x i midten av listen
-    public void push_middle(T x) {
+    public static void push_middle(int x) {
         Node ny = new Node(x);
         if (root == null) { root = ny; }
         else {
@@ -52,19 +55,16 @@ public class Teque<T> {
     }
 
     // printer element på index i
-    public void get(int i) {
-        if (i < 0 || i >= size() || size()==0) { throw new IndexOutOfBoundsException(i+" er utenfor rekkevidden til listen"); }
-        else {
-            Node current = root;
-            for (int a=0; a < i; a++) {
-                current = current.neste;
-            }
-            System.out.println(current.data);
+    public static void get(int i) {
+        Node current = root;
+        for (int a=0; a < i; a++) {
+            current = current.neste;
         }
+        System.out.println(current.data);
     }
 
     // returnerer størrelsen til listen - brukes for å finne midten
-    public int size() {
+    public static int size() {
         int size = 0;
         Node current = root;
         while (current != null) {
@@ -73,43 +73,44 @@ public class Teque<T> {
         }
         return size;
     }
-}
 
-class Main {
-    public static void main(String[] args) {
+    public static boolean isEmpty() {
+        return size() <= 0;
+    }
 
-        Teque<Integer> liste = new Teque<>();
+    public static void main(String[] args) throws FileNotFoundException {
+        File fil = new File(args[0]);
+        Scanner scanner = new Scanner(fil);
 
-        // bruker STDIN for å lese input og gøre operasjoner på teque
-        Scanner scanner = new Scanner(System.in);
-        boolean fortsett = true;
-        while (fortsett) {
-            System.out.print("> ");
-            String line = scanner.nextLine();
-            if (line.equals(" ")) fortsett = false; // stopper
+        int n = Integer.parseInt(scanner.nextLine());
 
-            try {
+        if (1 <= n && n <= Math.pow(10, 6) && scanner.hasNextLine()) {
+            for (int i = 0; i < n; i++) {
+                String line = scanner.nextLine();
+
                 String[] lineInfo = line.split(" ");
-                String operation = lineInfo[0];
-                int number = Integer.parseInt(lineInfo[1]);
+                String S = lineInfo[0];
+                int x = Integer.parseInt(lineInfo[1]);
 
-                // sjekker operasjonen som skal gjøres
-                switch (operation) {
-                    case "push_back":
-                        liste.push_back(number);
-                        break;
-                    case "push_front":
-                        liste.push_front(number);
-                        break;
-                    case "push_middle":
-                        liste.push_middle(number);
-                        break;
-                    case "get":
-                        liste.get(number);
-                        break;
-                }
-            } catch (ArrayIndexOutOfBoundsException ignore) { }
+                if (1 <= x && x <= Math.pow(10, 9)) {
+                    switch (S.toLowerCase()) {
+                        case "push_back":
+                            push_back(x);
+                            break;
+                        case "push_front":
+                            push_front(x);
+                            break;
+                        case "push_middle":
+                            push_middle(x);
+                            break;
+                        default:
+                            get(x);
+                    }
+                } else if (0 <= x && x <= size() - 1)
+                    get(x);
+            }
         }
+        scanner.close();
     }
 }
 

@@ -6,17 +6,15 @@ import java.util.List;
 public class BinarySearchTree {
     class Node {
         int x;
-        int height;
         Node left;
         Node right;
 
         Node(int x) {
             this.x = x;
-            this.height = 0;
         }
     }
 
-    Node root;
+    protected Node root;
 
     void insert(int... args) {
         for (int arg : args)

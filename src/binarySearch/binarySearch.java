@@ -11,7 +11,7 @@ public class binarySearch {
             list.add(i);
         }
         int tall = 123;
-        int tall = 155;
+        int tall2 = 155;
 
         // simple search
         System.out.println("Simple search:");
