@@ -1,76 +1,44 @@
 package obliger.oblig1;
 
-import sun.security.util.ArrayUtil;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Kattunge {
 
-    private static Node root;
+    // går gjennom treet, leter etter og oppdaterer katten, samtidig som skriver den ut
+    public static String finnKatt(HashMap<String, String> tre, String katt) {
+        StringBuilder path = new StringBuilder();
+        while(tre.containsKey(katt)) {
+            path.append(katt).append(" > ");
 
-    // bruker en enkel tree-datastruktur for å opprette treet med kun parent-peker
-    static class Node {
-        int x;
-        Node parent;
-
-        Node(int x) {
-            this.x = x;
-        }
+            katt = tre.get(katt);
+        } path.deleteCharAt(path.length()-2);
+        return path.toString();
     }
-
-    // henter noden som inneholder element x
-/*    static Node get(int x) {
-        return;
-    }*/
-
-
-    static void findExit(int x) {
-        findExit(root, x);
-    }
-    static void findExit(Node v, int x) {
-
-    }
-
 
     public static void main(String[] args) throws FileNotFoundException {
         File fil = new File(args[0]);
         Scanner scanner = new Scanner(fil);
 
-        // henter kattenoden - første tall
-        int katteNode = scanner.nextInt(); scanner.nextLine();
+        // første er kattenode + hashmap for å representere treet
+        String katt = scanner.next(); scanner.nextLine();
+        HashMap<String, String> tre = new HashMap<>();
 
-        // sjekker alle linjer med counter
-        for (int lineNum=1; scanner.hasNextLine(); lineNum++) {
-            String[] line = scanner.nextLine().trim().split(" ");
-            if (line[0].equals("-1")) break;
+        // Lager treet med parent-key og child-value
+        while(true) {
+            String parent = scanner.next();
 
-            if (lineNum == 1) // første linje etter katten = rot-linjen + sine barn
-            {
-                root = new Node(Integer.parseInt(line[0]));
-                System.out.print("\nRoot: "+root.x);
-                System.out.print("\nbarn: ");
-                for (int b=1; b < line.length; b++) {
-                    Node barn = new Node(Integer.parseInt(line[b]));
-                    barn.parent = root;
-                    System.out.print(barn.x + " ");
-                }
-            }
-            else  // ellers lag vanlige noder med foreldre-peker
-            {
-                Node parent = new Node(Integer.parseInt(line[0]));
-                System.out.print("\n\nparent: "+parent.x);
-                System.out.print("\nbarn: ");
-                for (int a = 1; a < line.length; a++) {
-                    Node barn = new Node(Integer.parseInt(line[a]));
-                    barn.parent = parent;
-                    System.out.print(barn.x + " ");
-                }
+            if(parent.contains("-1"))
+                break;
+            else {
+                String[] barneNoder = scanner.nextLine().split(" ");
+                for (String s : barneNoder)
+                    tre.put(s, parent);
             }
         }
+        String path = finnKatt(tre, katt);
+        System.out.println(path);
+        scanner.close();
     }
 }

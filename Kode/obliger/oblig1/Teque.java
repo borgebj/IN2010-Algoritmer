@@ -1,7 +1,4 @@
 package obliger.oblig1;
-
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 class Teque {
@@ -78,13 +75,11 @@ class Teque {
         return size() <= 0;
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        File fil = new File(args[0]);
-        Scanner scanner = new Scanner(fil);
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
         int n = Integer.parseInt(scanner.nextLine());
 
-        if (1 <= n && n <= Math.pow(10, 6) && scanner.hasNextLine()) {
             for (int i = 0; i < n; i++) {
                 String line = scanner.nextLine();
 
@@ -92,24 +87,21 @@ class Teque {
                 String S = lineInfo[0];
                 int x = Integer.parseInt(lineInfo[1]);
 
-                if (1 <= x && x <= Math.pow(10, 9)) {
-                    switch (S.toLowerCase()) {
-                        case "push_back":
-                            push_back(x);
-                            break;
-                        case "push_front":
-                            push_front(x);
-                            break;
-                        case "push_middle":
-                            push_middle(x);
-                            break;
-                        default:
-                            get(x);
-                    }
-                } else if (0 <= x && x <= size() - 1)
-                    get(x);
+                switch (S.toLowerCase()) {
+                    case "push_back":
+                        push_back(x);
+                        break;
+                    case "push_front":
+                        push_front(x);
+                        break;
+                    case "push_middle":
+                        push_middle(x);
+                        break;
+                    default:
+                        get(x);
+                }
+
             }
-        }
         scanner.close();
     }
 }
