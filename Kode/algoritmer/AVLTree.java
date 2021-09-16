@@ -365,5 +365,6 @@ public class AVLTree {
         bst.print();
         System.out.println("\nAVL - Balansert BST");
         avl.print();
+        System.out.println("\n-----------------------------\n");
     }
 }
