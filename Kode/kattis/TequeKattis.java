@@ -1,4 +1,4 @@
-package obliger.oblig1;
+package kattis;
 
 import java.util.ArrayList;
 import java.util.Scanner;
