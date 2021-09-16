@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BinarySearchTree {
-    class Node {
+    public class Node {
         int x;
         Node left;
         Node right;
 
-        Node(int x) {
+        public Node(int x) {
             this.x = x;
         }
     }
 
     protected Node root;
 
-    void insert(int... args) {
+    public void insert(int... args) {
         for (int arg : args)
             root = insert(root, arg);
     }
     // støtter ikke duplikater
-    Node insert(Node v, int x) {
+    public Node insert(Node v, int x) {
         if (v == null) {
             return new Node(x);
         }
@@ -34,15 +34,15 @@ public class BinarySearchTree {
         return v;
     }
 
-    boolean contains(int x) {
+    public boolean contains(int x) {
         return contains(root, x);
     }
 
-    void remove(int x) {
+    public void remove(int x) {
         root = remove(root, x);
     }
 
-    Node remove(Node v, int x) {
+    public Node remove(Node v, int x) {
         if (v == null) {
             return null;
         }
@@ -67,7 +67,7 @@ public class BinarySearchTree {
         return v;
     }
 
-    Node findMin(Node v) {
+    public Node findMin(Node v) {
         if (v == null || v.left == null) {
             return v;
         }
@@ -75,7 +75,7 @@ public class BinarySearchTree {
     }
 
     // sjekker om x finnes i treet
-    boolean contains(Node v, int x) {
+    public boolean contains(Node v, int x) {
         if (v == null) {
             return false;
         }
@@ -88,33 +88,46 @@ public class BinarySearchTree {
         return true;
     }
 
-    // inorder = i rekkefølge
-    void inorder() {
+    /** inorder**/
+    // inorder = i rekkefølge - minst til størst
+    public void inorder() {
         inorder(root);
     }
-    void inorder(Node v) {
+    public void inorder(Node v) {
         if (v == null) return;
         inorder(v.left);
-        System.out.print(v.x+" ");
+        System.out.print(v.x+"  ");
         inorder(v.right);
     }
 
-    void postorder() {
+    /** postorder **/
+    public void postorder() {
         postorder(root);
     }
-    void postorder(Node v) {
+    public void postorder(Node v) {
         if (v == null) return;
-        System.out.print(v.x+" ");
+        postorder(v.left);
+        postorder(v.right);
+        System.out.print(v.x+"  ");
+    }
+
+    /** preorder **/
+    public void preorder() {
+        preorder(root);
+    }
+    public void preorder(Node v) {
+        if (v == null) return;
+        System.out.print(v.x+"  ");
         postorder(v.left);
         postorder(v.right);
     }
 
     // broken metode - printer ut et FINT tre https://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram-in-java
-    void print() {
-        List<List<String>> lines = new ArrayList<List<String>>();
+    public void print() {
+        List<List<String>> lines = new ArrayList<>();
 
-        List<BinarySearchTree.Node> level = new ArrayList<BinarySearchTree.Node>();
-        List<BinarySearchTree.Node> next = new ArrayList<BinarySearchTree.Node>();
+        List<Node> level = new ArrayList<>();
+        List<Node> next = new ArrayList<>();
 
         level.add(root);
         int nn = 1;
@@ -122,11 +135,11 @@ public class BinarySearchTree {
         int widest = 0;
 
         while (nn != 0) {
-            List<String> line = new ArrayList<String>();
+            List<String> line = new ArrayList<>();
 
             nn = 0;
 
-            for (BinarySearchTree.Node n : level) {
+            for (Node n : level) {
                 if (n == null) {
                     line.add(null);
 
@@ -149,7 +162,7 @@ public class BinarySearchTree {
 
             lines.add(line);
 
-            List<BinarySearchTree.Node> tmp = level;
+            List<Node> tmp = level;
             level = next;
             next = tmp;
             next.clear();

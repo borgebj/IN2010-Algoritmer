@@ -9,11 +9,14 @@ public class Kattunge {
     // går gjennom treet, leter etter og oppdaterer katten, samtidig som skriver den ut
     public static String finnKatt(HashMap<String, String> tre, String katt) {
         StringBuilder path = new StringBuilder();
+
         while(tre.containsKey(katt)) {
             path.append(katt).append(" > ");
 
             katt = tre.get(katt);
-        } path.deleteCharAt(path.length()-2);
+        }
+
+        path.deleteCharAt(path.length()-2);
         return path.toString();
     }
 
@@ -25,7 +28,7 @@ public class Kattunge {
         String katt = scanner.next(); scanner.nextLine();
         HashMap<String, String> tre = new HashMap<>();
 
-        // Lager treet med parent-key og child-value
+        // Lager treet
         while(true) {
             String parent = scanner.next();
 
