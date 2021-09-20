@@ -5,16 +5,16 @@ import java.util.List;
 
 public class BinarySearchTree {
     public class Node {
-        int x;
-        Node left;
-        Node right;
+        public int x;
+        public Node left;
+        public Node right;
 
         public Node(int x) {
             this.x = x;
         }
     }
 
-    protected Node root;
+    public Node root;
 
     public void insert(int... args) {
         for (int arg : args)
@@ -227,6 +227,7 @@ public class BinarySearchTree {
             perpiece /= 2;
         }
     }
+
 
     public static void main(String[] args) {
         BinarySearchTree t = new BinarySearchTree();

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AVLTree {
-    class Node {
-        int x;
-        int height;
-        Node left;
-        Node right;
+    public class Node {
+        public int x;
+        public int height;
+        public Node left;
+        public Node right;
 
         Node(int x) {
             this.x = x;
@@ -17,7 +17,7 @@ public class AVLTree {
     }
 
     // første element - roten til treet / starten
-    Node root;
+    public Node root;
 
 
 
@@ -75,7 +75,7 @@ public class AVLTree {
     }
 
     /** balance-insert **/// støtter inserting av 1 eller flere
-    void insert(int... args) {
+    public void insert(int... args) {
         for (int arg : args)
             root = insert(root, arg);
     }
@@ -95,7 +95,7 @@ public class AVLTree {
 
 
     /** balance-remove **/
-    void remove(int x) {
+    public void remove(int x) {
         root = remove(root, x);
     }
     Node remove(Node v, int x) {
@@ -130,7 +130,7 @@ public class AVLTree {
 
 
     /** contains**/
-    boolean contains(int x) {
+    public boolean contains(int x) {
         return contains(root, x);
     }
     // sjekker om x finnes i treet
@@ -149,7 +149,7 @@ public class AVLTree {
 
     /** inorder**/
     // inorder = i rekkefølge - minst til størst
-    void inorder() {
+    public void inorder() {
         inorder(root);
     }
     void inorder(Node v) {
@@ -160,7 +160,7 @@ public class AVLTree {
     }
 
     /** postorder **/
-    void postorder() {
+    public void postorder() {
         postorder(root);
     }
     void postorder(Node v) {
@@ -171,7 +171,7 @@ public class AVLTree {
     }
 
     /** preorder **/
-    void preorder() {
+    public void preorder() {
         preorder(root);
     }
     void preorder(Node v) {
@@ -203,7 +203,7 @@ public class AVLTree {
     }
 
     // broken metode - printer ut et FINT tre https://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram-in-java
-    void print() {
+    public void print() {
         List<List<String>> lines = new ArrayList<List<String>>();
 
         List<Node> level = new ArrayList<Node>();

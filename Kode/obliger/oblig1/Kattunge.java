@@ -1,47 +1,63 @@
 package obliger.oblig1;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import algoritmer.AVLTree;
+
 import java.util.*;
 
 public class Kattunge {
 
-    // går gjennom treet, leter etter og oppdaterer katten, samtidig som skriver den ut
-    public static String finnKatt(HashMap<String, String> tre, String katt) {
-        StringBuilder path = new StringBuilder();
+    public class Node {
+        String innhold;
+        Node parent;
 
-        while(tre.containsKey(katt)) {
-            path.append(katt).append(" > ");
-
-            katt = tre.get(katt);
+        Node(String innhold) {
+            this.innhold = innhold;
         }
-
-        path.deleteCharAt(path.length()-2);
-        return path.toString();
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        File fil = new File(args[0]);
-        Scanner scanner = new Scanner(fil);
+    public static void finnKattTo(AVLTree.Node v, int x, String path) {
+        if (v == null) return;
+        else if (v.x == x) {
+            path += Integer.toString(x);
+            String[] pathList = path.split(" ");
+            for (int i=pathList.length-1; i >=0 ;i--) System.out.print(pathList[i]+" ");
+        }
+        path += v.x+" ";
 
-        // første er kattenode + hashmap for å representere treet
+        finnKattTo(v.left, x, path);
+        finnKattTo(v.right, x, path);
+    }
+
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        // første er kattenode + hashmap for å representere treet
+//        int katt = scanner.nextInt(); scanner.nextLine();
+//        AVLTree tre = new AVLTree();
+//
+//        while(true) {
+//            int number = scanner.nextInt();
+//            if (number == -1) break;
+//            else {
+//                tre.insert(number);
+//            }
+//        }
+//        finnKattTo(tre.root, katt, "");
+//        scanner.close();
+//    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         String katt = scanner.next(); scanner.nextLine();
-        HashMap<String, String> tre = new HashMap<>();
 
-        // Lager treet
-        while(true) {
-            String parent = scanner.next();
+        while (true) {
+            String parentNode = scanner.next();
 
-            if(parent.contains("-1"))
-                break;
+            System.out.println(parentNode);
+            if (parentNode.contains("-1")) break;
             else {
-                String[] barneNoder = scanner.nextLine().split(" ");
-                for (String s : barneNoder)
-                    tre.put(s, parent);
+                String[] barnenoder = scanner.nextLine().split(" ");
             }
         }
-        String path = finnKatt(tre, katt);
-        System.out.println(path);
-        scanner.close();
     }
 }
