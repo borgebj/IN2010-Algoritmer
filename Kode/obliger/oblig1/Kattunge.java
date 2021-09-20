@@ -28,36 +28,22 @@ public class Kattunge {
         finnKattTo(v.right, x, path);
     }
 
-//    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//
-//        // første er kattenode + hashmap for å representere treet
-//        int katt = scanner.nextInt(); scanner.nextLine();
-//        AVLTree tre = new AVLTree();
-//
-//        while(true) {
-//            int number = scanner.nextInt();
-//            if (number == -1) break;
-//            else {
-//                tre.insert(number);
-//            }
-//        }
-//        finnKattTo(tre.root, katt, "");
-//        scanner.close();
-//    }
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String katt = scanner.next(); scanner.nextLine();
 
-        while (true) {
-            String parentNode = scanner.next();
+        // første er kattenode + hashmap for å representere treet
+        int katt = scanner.nextInt(); scanner.nextLine();
+        AVLTree tre = new AVLTree();
 
-            System.out.println(parentNode);
-            if (parentNode.contains("-1")) break;
+        while(true) {
+            int number = scanner.nextInt();
+            if (number == -1) break;
             else {
-                String[] barnenoder = scanner.nextLine().split(" ");
+                tre.insert(number);
             }
         }
+        tre.print();
+        finnKattTo(tre.root, katt, "");
+        scanner.close();
     }
 }
