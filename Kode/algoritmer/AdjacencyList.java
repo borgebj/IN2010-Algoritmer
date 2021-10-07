@@ -8,11 +8,13 @@ import java.util.HashSet;
 
 
 public class AdjacencyList {
-    public class Edge {
-        Movie weight;
+    public static class Edge {
+        Movie label;
+        double weight;
         Actor to, from;
-        public Edge(Actor to, Actor from, Movie weight) {
-            this.weight = weight;
+        public Edge(Actor to, Actor from, Movie label) {
+            this.label = label;
+            this.weight = label.getRating();
             this.to = to;
             this.from = from;
         }
