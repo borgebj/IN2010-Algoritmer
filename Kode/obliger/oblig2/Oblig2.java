@@ -13,13 +13,14 @@ public class Oblig2 {
     static int countActor = 200; //TODO: fjern
     static int countMovie = 200; //TODO: fjern
     static ArrayList<Movie> movies = new ArrayList<>();
-    static ArrayList<Actor> actors = new ArrayList<>();
     static AdjacencyList graph = new AdjacencyList();
 
     /** ideer hvordan fikse: **/
     // 1. Sammenligne og lage kanter samtidig som addNode()
     // 2. Bruke en traverseringsmetode i grafen for å gå gjennom og sammenligne (krever sikkert hvertfall èn loop, starten)
     // > for (actor a : actors): graph.traverseAndCheck(a)
+    // 3. Opprette grafen når movies leses inn, ved å gå gjennom grafen for hver movie-linje og opprette kanten med denne infoen
+    /** 3. virker riktigst ut kanskje **/
 
     //region oppgave 1
     static void antKanterOgNoder() {
@@ -33,8 +34,8 @@ public class Oblig2 {
     static void buildGraph() {
         long start = System.currentTimeMillis();
         //TODO: Denne tar Aaaalt for lang tid - fiks
-        for (Actor a : actors) {
-            for (Actor b : actors) {
+        for (Actor a : graph.graphList.keySet()) {
+            for (Actor b : graph.graphList.keySet()) {
                 for (Movie m : movies) {
                     if (a.movies.contains(m.id) && b.movies.contains((m.id)) && !a.name.equals(b.name))
                         graph.addEdge(a, b, m);
@@ -59,7 +60,6 @@ public class Oblig2 {
             List<String> actorMovies = new ArrayList<>(Arrays.asList(line).subList(2, line.length));
             Actor actor = new Actor(line[0], line[1], actorMovies);
             graph.addNode((actor));
-            actors.add(actor);
         }
     }
     static void oppgaveEn() throws FileNotFoundException {
