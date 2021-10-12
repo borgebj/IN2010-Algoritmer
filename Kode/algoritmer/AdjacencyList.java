@@ -3,15 +3,16 @@ package algoritmer;
 import obliger.oblig2.Actor;
 import obliger.oblig2.Movie;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 
 public class AdjacencyList {
     public static class Edge {
+
         Movie label;
         double weight;
         Actor to, from;
+
         public Edge(Actor to, Actor from, Movie label) {
             this.label = label;
             this.weight = label.getRating();
@@ -21,7 +22,7 @@ public class AdjacencyList {
 
         @Override
         public String toString() {
-            return " ["+from+" -> "+to+" ("+weight+") ] ";
+            return " {"+from+" - "+to+" ("+weight+")}";
         }
     }
 
@@ -36,13 +37,28 @@ public class AdjacencyList {
         if (!graphList.containsKey(a)) graphList.put(a, new HashSet<>());
         if (!graphList.containsKey(b)) graphList.put(b, new HashSet<>());
         graphList.get(a).add(new Edge(a, b, weight));
-        graphList.get(b).add(new Edge(b, a, weight));
     }
 
+    //TODO: Unødvendig?
+    public boolean containsEdge(Edge e) {
+        for (HashSet<Edge> set : graphList.values()) {
+            if (set.contains(e)) return true;
+        } return false;
+    }
     public void addNode(Actor a) {
         if (!graphList.containsKey(a)) {
             graphList.put(a, new HashSet<>());
         }
+    }
+
+    public List<Actor> getNeighbours(Actor a) {
+        List<Actor> neighbours = new ArrayList<>();
+        HashSet<Edge> kanter = graphList.get(a);
+        for (Edge e : kanter) {
+            if (!neighbours.contains(e.from) && !e.from.equals(a)) neighbours.add(e.from);
+            if (!neighbours.contains(e.to) && !e.to.equals(a)) neighbours.add(e.to);
+        }
+        return neighbours;
     }
 
     public void print(){

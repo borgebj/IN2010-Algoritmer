@@ -13,6 +13,10 @@ public class Actor {
         this.movies = movies;
     }
 
+    public boolean hasMovie(String id) {
+        return movies.contains(id);
+    }
+
     // getters
     public String getId() {
         return id;
@@ -28,6 +32,6 @@ public class Actor {
 
     @Override
     public String toString() {
-        return "("+name+")";
+        return name;
     }
 }
