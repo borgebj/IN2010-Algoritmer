@@ -40,7 +40,7 @@ public class Oblig2 {
     static void readMovies(Scanner movieScanner) {
         long start = System.currentTimeMillis();
         //TODO: Nye problemet: O(|m|*|n|)?
-        while (movieScanner.hasNextLine() && countMovie-- > 0) {
+        while (movieScanner.hasNextLine() /*&& countMovie-- > 0*/) {
             String[] line = movieScanner.nextLine().split("\t");
             Movie movie = new Movie(line[0], line[1], Double.parseDouble(line[2]), line[3]);
             movies.add(movie);
@@ -53,7 +53,7 @@ public class Oblig2 {
     }
     static void readActors(Scanner actorScanner) {
         long start = System.currentTimeMillis();
-        while (actorScanner.hasNextLine() && countActor-- > 0) {
+        while (actorScanner.hasNextLine() /*&& countActor-- > 0*/) {
             String[] line = actorScanner.nextLine().split("\t");
             List<String> actorMovies = new ArrayList<>(Arrays.asList(line).subList(2, line.length));
             graph.addNode(new Actor(line[0], line[1], actorMovies));
