@@ -44,7 +44,7 @@ class AdjacencyList:
 
         print("Antall noder:", len(self.graph))
         print("Antall kanter:", len(kanter))
-        print("Antall kanter:", antkanter/2)
+        print("Antall kanter (/2):", antkanter/2)
 
         # self.w = ordbok med kanter (a, b) og vekten deres
         # self.graph = hver actor og deres

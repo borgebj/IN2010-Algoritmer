@@ -8,8 +8,8 @@ import time
 graph = AdjacencyList()
 movieList = []
 
-actorCount = 1000
-movieCount = 1000
+actorCount = 5000
+movieCount = 5000
 
 
 def oppgaveEn():
@@ -25,6 +25,12 @@ def oppgaveEn():
 
             line = actor.strip().split("\t")
             a = Actor(line[0], line[1], line[2::])
+
+            for movieId in line[2::]:
+                for m in movieList:
+                    if movieId == m.id:
+                        m.addActor(a)
+
             graph.addNode(a)
         print("Actors:", float(time.process_time()-start),"s")
 
@@ -39,32 +45,32 @@ def oppgaveEn():
             id, title, rating, votes = movie.split("\t")
             m = Movie(id, title, rating, votes)
 
-            for key in graph.getgraph():
-                if key.hasMovie(m.id):
-                    m.addActor(key)
+            # for key in graph.getgraph():
+            #     if key.hasMovie(m.id):
+            #         m.addActor(key)
 
             movieList.append(m)
         print("Movies:", float(time.process_time()-start),"s")
 
     def readFiles():
-        actorFile = open("actors.tsv", encoding="utf-8")
         movieFile = open("movies.tsv", encoding="utf-8")
-        readActors(actorFile)
+        actorFile = open("actors.tsv", encoding="utf-8")
         readMovies(movieFile)
-
+        readActors(actorFile)
 
     def fillGraph():
         start = time.process_time()
         for movie in movieList:
             for a in movie.getActors():
                 for b in movie.getActors():
-                    if a != b: graph.addEdge(a, b, movie)
+                    if a != b:
+                        graph.addEdge(a, b, movie)
         print("Edges:", float(time.process_time()-start),"s")
 
     print("oppgave 1")
     readFiles()
     fillGraph()
-    graph.print()
+    #graph.print()
 
 
 def oppgaveTo():
