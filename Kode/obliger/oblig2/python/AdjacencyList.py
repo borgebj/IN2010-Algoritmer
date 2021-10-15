@@ -12,6 +12,8 @@ class AdjacencyList:
 
     #
     def addEdge(self, a, b, weight):
+        if a not in self.graph: self.addNode(a)
+        if b not in self.graph: self.addNode(b)
         self.graph[a].add(b)
         self.graph[b].add(a)
 

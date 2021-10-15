@@ -86,19 +86,18 @@ def oppgaveTo():
                     queue.append(new_path)
 
                     if neighbour == b:
-                        new_path.remove(a)
                         return new_path
                 visited.append(node)
         print("No path")
-        return
+        return []
 
     #
     def shortestPath(idA, idB):
         actorA = graph.getActor(idA)
         actorB = graph.getActor(idB)
         res = bfs(actorA, actorB)
-        forrige = actorA
-        print("\n",actorA)
+        forrige = res.pop(0)
+        print("\n"+str(forrige))
         for actor in res:
             movie = graph.getMovieFromEdge(forrige, actor)
             print("===[", movie, "("+str(movie.rating)+")", "] ===>", actor)
