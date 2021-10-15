@@ -1,14 +1,17 @@
 
-
 class Actor:
 
-    def __init__(self, id, name, movies):
+    def __init__(self, id, name, mids):
         self.id = id
         self.name = name
-        self.movies = movies
+        self.mids = mids
+        self.movies = {}
 
-    def hasMovie(self, movie):
-        return movie in self.movies
+    def getMids(self):
+        return self.mids
+
+    def addMovie(self, id, movie):
+        self.movies[id] = movie
 
     def __str__(self):
         return str(self.name)

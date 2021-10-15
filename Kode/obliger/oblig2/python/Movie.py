@@ -1,5 +1,3 @@
-from obliger.oblig2.python.Actor import Actor
-
 
 class Movie:
 
@@ -8,13 +6,10 @@ class Movie:
         self.title = title
         self.rating = rating
         self.votes = votes
-        self.actors = []
+        self.actors = {}
 
-    def actorPlayed(self, actor):
-        return actor in self.actors
-
-    def addActor(self, actor):
-        self.actors.append(actor)
+    def addActor(self, id, actor):
+        self.actors[id] = actor
 
     def getActors(self):
         return self.actors
@@ -23,4 +18,4 @@ class Movie:
         return str(self.title)
 
     def __repr__(self):
-        return str("|"+self.title+"|")
+        return str(self.title)
