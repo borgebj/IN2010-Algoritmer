@@ -1,12 +1,14 @@
 graph {
 	A
-	A -- F
+	A -- C [label=3]
+	A -- B [label=3]
 	B
-	B -- G
+	B -- E [label=4]
 	C
-	C -- F
-	C -- G
-	C -- D
+	C -- G [label=1]
+	C -- F [label=3]
+	C -- D [label=4]
+	C -- E [label=1]
 	D
 	E
 	F

@@ -4,13 +4,15 @@ from algoritmer.python_algoritmer.AdjacencyList import AdjacencyList
 
 def fillRandom(graph):
     nodes = ["A", "B", "C", "D", "E", "F", "G"]
-    #nodes = [1, 2, 3, 4, 5, 6, 7, 8]
-    for y in range(len(nodes)): graph.addNode(nodes[y]) # sørger for alfabetisk rekkefølge
-    for x in range(5):
+    weights = [1, 2, 3, 4, 5]
+    for y in range(len(nodes)): graph.addNode(nodes[y])  # sørger for alfabetisk rekkefølge
+    for x in range(10):
         one = random.choice(nodes)
         two = random.choice(nodes)
-        if one != two: graph.addEdge(one, two)
-    graph.printGraph()
+        weight = random.choice(weights)
+        if one != two:
+            if graph.weights: graph.addEdge(one, two, weight)
+            else: graph.addEdge(one, two)
 
 
 # Hoved-funksjonen for denne filen #
@@ -30,14 +32,25 @@ def BFS(graph, startnode):
 
 
 def main():
-    graph = AdjacencyList()
-    fillRandom(graph)
-    graph.drawgraph()
-    print("BFS traversering")
-    print(BFS(graph.graph, input("Startsnode: ")))
-    print("--------------------------------------------")
-    print("BFS traversering for korteste vei")
-    print(graph.BFS_shortest_path(input("Start: "), input("Slutt:\n> ")))
+    # graph = AdjacencyList(weights=True)
+    # print("< Opprettet med graf med maks 10 kanter >")
+    # fillRandom(graph)
+    # graph.drawgraph()
+    # print("---------------")
+    # graph.printGraph()
+    # print("BFS traversering")
+    # print(graph.BFS(input("Startsnode: ")))
+    # print("--------------------------------------------")
+    # print("BFS traversering for korteste vei")
+    # print(graph.BFS_shortest_path(input("Start: "), input("Slutt: ")))
 
+    graf = {"A": {"B": 2, "C": 1},
+            "B": {"A": 1},
+            "C": {"B": 2, "A": 2}}
+    print(graf)
+    for node in graf:
+        print("\nNode", node)
+        for kant in graf[node]:
+            print("Kant", node, ">", kant, "("+str(graf[node][kant])+")")
 
 main()

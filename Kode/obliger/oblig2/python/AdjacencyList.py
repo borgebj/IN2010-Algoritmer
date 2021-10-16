@@ -1,32 +1,40 @@
 from collections import defaultdict
 
+
 class AdjacencyList:
 
     actors = {}
     movies = {}
-    edges = 0
 
     def __init__(self):
-        self.graph = defaultdict(set)
-        self.w = dict()
+        #self.graph = defaultdict(set)
+        self.graph = {}
+        self.edges= dict()
 
-    #
-    def addEdge(self, a, b, weight):
-        if a not in self.graph: self.addNode(a)
-        if b not in self.graph: self.addNode(b)
-        self.graph[a].add(b)
-        self.graph[b].add(a)
-
-        self.w[(a, b)] = weight
-        self.w[(b, a)] = weight
-        self.edges += 1
-
-    def getgraph(self):
-        return self.graph
+        # self.edges = ordbok med kanter (a, b) og vekten deres
+        # self.graph = hver actor og deres naboer
 
     def addNode(self, actor):
         if actor not in self.graph:
-            self.graph[actor] = set()
+            #self.graph[actor] = set()
+            self.graph[actor] = {}
+
+    def addEdge(self, a, b, weight):
+        if a not in self.graph: self.addNode(a)
+        if b not in self.graph: self.addNode(b)
+
+        if a not in self.graph[a]: self.graph[b][a] = weight
+        if b not in self.graph[b]: self.graph[a][b] = weight
+        if (a, b) not in self.edges: self.edges[(a, b)] = weight
+
+        # self.graph[a].add(b)
+        # self.graph[b].add(a)
+        #
+        # self.edges[(a, b)] = weight
+        # self.edges[(b, a)] = weight
+
+    def getgraph(self):
+        return self.graph
 
     # nye # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def addActor(self, aid, actor):
@@ -40,7 +48,7 @@ class AdjacencyList:
         if actor in self.actors:
             return self.actors[actor]
 
-    def getNeighbours(self, actor):
+    def neighbours(self, actor):
         return self.graph[actor]
 
     def addMovie(self, mid, movie):
@@ -56,10 +64,10 @@ class AdjacencyList:
         return self.movies
 
     def getWeights(self):
-        return self.w
+        return self.edges
 
     def getWeight(self, a, b):
-        return self.w[a, b]
+        return self.edges[a, b]
 
     def fillEdges(self):
         for m in self.movies: # stor
@@ -72,36 +80,33 @@ class AdjacencyList:
                         self.addEdge(actorOne, actorTwo, movie)
 
     def getMovieFromEdge(self, a, b):
-        return self.w[(a, b)]
+        return self.edges[(a, b)]
 
     def getEdges(self):
-        return self.w
+        return self.edges
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+    def printAll(self):
+        print("Nodes")
+        self.printNodes()
+        print("Weights")
+        self.printWeights()
+        print("Counts")
+        self.printCounts()
+
     def printWeights(self):
-        print("-----------------------------------------------------------------")
-        for b in self.w:
+        for b in self.edges:
             print(b, end=" - ")
-            print(self.w[b])
-            print("-----------------------------------------------------------------")
+            print(self.edges[b])
+        print("----------------------------------")
 
     def printNodes(self):
-        print("--------------------------------------------------------------------------------")
         for a in self.graph:
             print(a, end=" - ")
             print(self.graph[a])
-            print("--------------------------------------------------------------------------------")
+        print("----------------------------------")
 
     def printCounts(self):
-        antkanter = 0
-        for actor in self.graph:
-            neighbours = self.graph[actor]
-            for n in neighbours:
-                antkanter += 1
-        print("----------------------------------")
         print("Nodes:", len(self.graph))
-        print("Edges:", int(len(self.w)/2))
+        print("Edges:", int(len(self.edges)/2))
         print("----------------------------------")
-
-        # self.w = ordbok med kanter (a, b) og vekten deres
-        # self.graph = hver actor og deres naboer
