@@ -14,35 +14,19 @@ def fillRandom(graph):
             if graph.weights: graph.addEdge(one, two, weight)
             else: graph.addEdge(one, two)
 
+def Djikstra(graph, start, slutt):
 
-# Hoved-funksjonen for denne filen #
-def BFS(graph, startnode):
-    visited = [startnode]
-    queue = [startnode]
-    path = []
-
-    while queue:
-        node = queue.pop(0)
-        path.append(node)
-        for nabo in graph[node]:
-            if nabo not in visited:
-                visited.append(nabo)
-                queue.append(nabo)
-    return path
 
 
 def main():
-    graph = AdjacencyList(weights=True)
+    graph = AdjacencyList(weights=False)
     print("< Opprettet med graf med maks 10 kanter >")
     fillRandom(graph)
     graph.drawgraph()
     print("---------------")
     graph.printGraph()
-    print("BFS traversering")
-    print(graph.BFS(input("Startsnode: ")))
+    print("Djikstra traversering for korteste vei")
+    print(Djikstra(graph, input("Start: ")), input("Slutt: "))
     print("--------------------------------------------")
-    print("BFS traversering for korteste vei")
-    print(graph.BFS_shortest_path(input("Start: "), input("Slutt: ")))
-
 
 main()

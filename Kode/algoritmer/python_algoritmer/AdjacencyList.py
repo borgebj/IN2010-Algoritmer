@@ -1,9 +1,13 @@
 import graphviz
 
+"""
+Dynamisk Adjacency-List for både vektet og uvektet graf
+"""
+
 
 class AdjacencyList:
-    graph = {}
-    edges = dict()
+    graph = {}        # grafen {"nøkkel": {nabo: vekt}, "nøkkel": {nabo: vekt} }
+    edges = dict()    # kanter {"(a, b)": vekt, "(c, d)": vekt }
     edgeCount = 0
 
     def __init__(self, weights):
