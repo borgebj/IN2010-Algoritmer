@@ -1,7 +1,7 @@
 import random
 from algoritmer.python_algoritmer.AdjacencyList import AdjacencyList
 from collections import defaultdict
-import collections
+import graphviz
 
 
 def fillRandom(graph):
@@ -16,31 +16,28 @@ def fillRandom(graph):
             if graph.weights: graph.addEdge(one, two, weight)
             else: graph.addEdge(one, two)
 
-
+# henter index til minste tuple + returnerer
 def heappop(queue):
-    if not queue: return
-    minste = min(queue)
-    queue.remove(minste)
-    return minste
+    indx = queue.index(min(queue))
+    return queue.pop(indx)
 
 # lambda: float vil si at dicten har default-verdi float
 def Dijkstra(graph, start):
     queue = [(0, start)]
     dist = defaultdict(lambda: float('inf'))
     dist[start] = 0
-
-    print("Distanser:", dist)
+    parents = {start: None}
 
     while queue:
         cost, node = heappop(queue)
         for nabo in graph[node]:
             c = cost + graph[node][nabo]
-            print("Nabo", nabo, "kost", c)
+
             if c < dist[nabo]:
                 dist[nabo] = c
                 queue.append((c, nabo))
-    return dist
-
+                parents[nabo] = node
+    return dist, parents
 
 def main():
     graph = AdjacencyList(weights=True)
@@ -50,11 +47,16 @@ def main():
     print("---------------")
     graph.printGraph()
     print("Djikstra traversering for korteste vei")
-    distances = Dijkstra(graph.graph, input("Start: "))
+    distances, parents = Dijkstra(graph.graph, input("Start: "))
     print("--------------------------------------------")
-    for key in distances:
-        print(key+":", distances[key])
+    print("Printer sti ... ")
     print(dict(distances))
+    dot = graphviz.Graph()
+    for node in parents:
+        u = parents[node]
+        if u:
+            dot.edge(node, u, label=str(graph.graph[node][u]))
+    dot.render("Dijkstra", format='svg')
     print("--------------------------------------------")
 
 
