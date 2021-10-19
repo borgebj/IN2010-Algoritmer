@@ -1,6 +1,7 @@
 graph {
-	D -- F [label=1]
-	A -- D [label=1]
-	B -- D [label=3]
-	C -- B [label=4]
+	F -- C [label=5]
+	A -- F [label=4]
+	D -- F [label=2]
+	B -- A [label=4]
+	E -- A [label=2]
 }

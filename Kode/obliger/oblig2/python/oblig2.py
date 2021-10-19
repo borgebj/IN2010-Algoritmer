@@ -1,6 +1,8 @@
 from obliger.oblig2.python.AdjacencyList import AdjacencyList
 from obliger.oblig2.python.oppgEn import oppgEn
 from obliger.oblig2.python.oppgTo import oppgTo
+from obliger.oblig2.python.oppgTre import oppgTre
+from obliger.oblig2.python.oppgFire import oppgFire
 
 
 graph = AdjacencyList()
@@ -16,11 +18,13 @@ def oppgaveTo():
 
 
 def oppgaveTre():
-    print("oppgave 3")
+    oppgaveEn()
+    oppgTre(graph)
 
 
 def oppgaveFire():
-    print("oppgave 4")
+    oppgaveEn()
+    oppgFire(graph)
 
 
 def velgOppgave(oppgave):

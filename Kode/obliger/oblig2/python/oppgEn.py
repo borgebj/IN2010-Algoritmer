@@ -7,12 +7,17 @@ class oppgEn:
 
     def __init__(self, graph):
         self.graph = graph
+        print("----[start oppgave 1]---")
         self.readFiles()
         self.fillGraph()
 
     def readMovies(self, movieFile):
+        movieCount = 5000
         start = time.process_time()
         for movie in movieFile:
+            # if movieCount == 0:
+            #     break
+            # movieCount -= 1
 
             mid, title, rating, votes = movie.split("\t")
             m = Movie(mid, title, rating, votes)
@@ -21,8 +26,13 @@ class oppgEn:
         print("Movies:", float(time.process_time() - start), "s")
 
     def readActors(self, actorFile):
+        actorCount = 5000
         start = time.process_time()
         for actor in actorFile:
+            # if actorCount == 0:
+            #     break
+            # actorCount -= 1
+
 
             line = actor.strip().split("\t")
             a = Actor(line[0], line[1], line[2::])

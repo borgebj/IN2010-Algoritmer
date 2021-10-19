@@ -1,9 +1,8 @@
-
-
 class oppgTo:
 
     def __init__(self, graph):
         self.graph = graph
+        print("----[start oppgave 2]---")
         self.shortestPath("nm2255973", "nm0000460")
         self.shortestPath("nm0424060", "nm0000243")
         self.shortestPath("nm4689420", "nm0000365")
@@ -37,8 +36,8 @@ class oppgTo:
         actorB = self.graph.getActor(idB)
         res = self.bfs(actorA, actorB)
         forrige = res.pop(0)
-        print("\n"+str(forrige))
+        print("\n " + str(forrige))
         for actor in res:
             movie = self.graph.getMovieFromEdge(forrige, actor)
-            print("===[", movie, "("+str(movie.rating)+")", "] ===>", actor)
+            print("===[", movie, "( " + str(movie.rating) + ")", "] ===>", actor)
             forrige = actor

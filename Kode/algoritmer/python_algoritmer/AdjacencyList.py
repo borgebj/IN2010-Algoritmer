@@ -24,10 +24,13 @@ class AdjacencyList:
         if a not in self.graph: self.addNode(a)
         if b not in self.graph: self.addNode(b)
 
-        # legger til kanter med vekt og kanter i egen dict
+        # legger til kanter med vekt
         self.graph[a][b] = weight
         self.graph[b][a] = weight
-        if (b, a) not in self.edges: self.edges[(a, b)] = weight
+
+        # legger til kante-par og vekter i egen ordbok
+        self.edges[(a, b)] = weight
+        self.edges[(b, a)] = weight
 
     def sizeEdges(self):
         for node in self.graph:
@@ -45,7 +48,11 @@ class AdjacencyList:
         print("----------------------")
 
     def getGraphh(self):
-        return self.graph
+        return self.edges
+
+    def getData(self):
+        return self.edges, self.graph
+
 
 
     # region Graphviz - uten vekter

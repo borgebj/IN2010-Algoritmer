@@ -14,8 +14,11 @@ class Movie:
     def getActors(self):
         return self.actors
 
+    def getRating(self):
+        return float(self.rating)
+
     def __str__(self):
-        return str(self.title)
+        return str(self.title)+" ("+str(self.rating)+")"
 
     def __repr__(self):
         return str(self.title)
