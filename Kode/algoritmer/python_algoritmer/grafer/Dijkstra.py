@@ -1,6 +1,6 @@
 import random
 import graphviz
-from algoritmer.python_algoritmer.AdjacencyList import AdjacencyList
+from algoritmer.python_algoritmer.grafer.AdjacencyList import AdjacencyList
 from collections import defaultdict
 from heapq import heappush, heappop, _heappop_max, heapify, _heapify_max
 
@@ -51,11 +51,6 @@ def Dijkstra(graph, s):
     return parents, dist
 
 
-def getHighest(queue):
-    indx = queue.index(max(queue))
-    return queue.pop(indx)
-
-
 def DijkstraHeaviest(graph, s):
     visited = [s]
     queue = [(0, s)]
@@ -63,17 +58,15 @@ def DijkstraHeaviest(graph, s):
     parents = {s: None}
 
     while queue:
-        # _heapify_max(queue)
-        # cost, highest = getHighest(queue) # legacy-metode
-        # cost, highest = _heappop_max(queue)
-        cost, highest = getHighest(queue)
+        _heapify_max(queue)
+        cost, highest = _heappop_max(queue)
+
         for nabo in graph[highest]:
-            c = cost + graph[nabo][highest]
+            c = (10-(cost + graph[nabo][highest]))
             if c > dist[nabo] and nabo not in visited:
                 visited.append(nabo)
                 dist[nabo] = c
                 heappush(queue, (c, nabo))
-                # queue.append((c, nabo))
                 parents[nabo] = highest
 
     return parents, dist

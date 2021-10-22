@@ -1,5 +1,5 @@
 import random
-from algoritmer.python_algoritmer.AdjacencyList import AdjacencyList
+from algoritmer.python_algoritmer.grafer.AdjacencyList import AdjacencyList
 
 
 def fillRandom(graph):

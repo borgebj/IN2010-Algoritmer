@@ -1,7 +1,0 @@
-graph {
-	F -- C [label=5]
-	A -- F [label=4]
-	D -- F [label=2]
-	B -- A [label=4]
-	E -- A [label=2]
-}
