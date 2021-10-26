@@ -24,7 +24,7 @@ def createList(size):
     return lst
 
 
-def ChoosePivot(lst, low, high):
+def choosePivot(lst, low, high):
     first = low
     middle = lst[len(lst) // 2]
     last = high
@@ -32,7 +32,7 @@ def ChoosePivot(lst, low, high):
 
 
 def partition(lst, low, high):
-    p = ChoosePivot(lst, low, high)
+    p = choosePivot(lst, low, high)
     lst[p], lst[high] = lst[high], lst[p]
     pivot = lst[high]
     left = low
@@ -55,9 +55,8 @@ def partition(lst, low, high):
 def quickSort(lst, low, high):
     if low >= high:
         return lst
-    print("\n", lst)
+
     p = partition(lst, low, high)
-    print("partition", p)
     quickSort(lst, low, p - 1)
     quickSort(lst, p + 1, high)
 
@@ -71,37 +70,44 @@ def quickSortTimer(lst, low, high):
 
 
 def main():
-    size = 10
+    size = 500000
     lst = createList(size)
     print("Size:", size)
-    print("unosorted", lst)
+    # print("unosorted", lst)
     quickSortTimer(lst, 0, len(lst)-1)
-    print("sorted", lst)
+    # print("sorted", lst)
 
 
 main()
 
+# testet på laptop! ikke stasjonær (kan være raskere)
 # tid (ish):
 # 100 elementer
-# -
+# - 0.0 s
 
 # 500 elementer
-# -
+# - 0.015 s
 
 # 1000 elementer
-# -
+# - 0.0 s - 0.015 s
 
 # 5000 elementer
-# -
+# - 0.3 s - 0.062 s
 
 # 10 000 elementer
-# -
+# - 0.08 s - 0.15 s
 
 # 20 000 elementer
-# -
+# - 0.17 s - 0.25 s
 
 # 50 000 elementer
-# -
+# - 0.5 s - 0.6 s
 
 # 100 000 elementer
-# -
+# - 1.0 s - 1.125 s
+
+# 200 000 elementer
+# - 1.625 s - 1.95 s
+
+# 500 000 elementer
+# - 4.9s - 8.9 s

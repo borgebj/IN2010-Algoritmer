@@ -1,18 +1,17 @@
 graph {
 	A
-	A -- C [label=5]
-	A -- G [label=4]
+	A -- E [label=4]
+	A -- C [label=4]
 	B
-	B -- E [label=3]
-	B -- C [label=4]
+	B -- D [label=2]
+	B -- F [label=2]
 	C
-	C -- F [label=5]
+	C -- E [label=1]
+	C -- D [label=4]
 	D
-	D -- F [label=2]
-	D -- E [label=3]
 	E
-	E -- F [label=4]
+	E -- G [label=3]
 	F
-	F -- G [label=4]
+	F -- G [label=5]
 	G
 }
