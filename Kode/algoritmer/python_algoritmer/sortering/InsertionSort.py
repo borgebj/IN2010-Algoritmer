@@ -2,9 +2,9 @@ import random
 import time
 
 
-# BubbleSort
+# Insertion Sort
 # O-notasjon: O(n^2)
-# konklusjon: litt treig i større
+# konklusjon: ish som selection?, raskest for småe
 
 
 def createList(size):
@@ -18,21 +18,22 @@ def createList(size):
         element = lst.pop(j)
         lst.append(element)
 
-    print("< Bubble Sort >")
+    print("< Insertion Sort >")
     print("--------------------------------------")
     return lst
 
 
-def bubbleSort(lst):
-    for i in range(len(lst) - 1):
-        for j in range(len(lst) - i - 1):
-            if lst[j] > lst[j + 1]:
-                lst[j], lst[j + 1] = lst[j + 1], lst[j]
+def insertionSort(lst):
+    for i in range(len(lst)):
+        j = i
+        while j > 0 and lst[j-1] > lst[j]:
+            lst[j-1], lst[j] = lst[j], lst[j-1]
+            j = j - 1
 
 
-def bubbleSortTimer(lst):
+def insertionSortTimer(lst):
     start = time.process_time()
-    bubbleSort(lst)
+    insertionSort(lst)
     print("\ntid:", float(time.process_time() - start), "s")
 
 
@@ -41,7 +42,7 @@ def main():
     lst = createList(size)
     print("Size:", size)
     print("unosorted", lst)
-    bubbleSortTimer(lst)
+    insertionSortTimer(lst)
     print("sorted", lst)
 
 
@@ -52,16 +53,17 @@ main()
 # - 0.0 s
 
 # 500 elementer
-# - 0.031 s
+# - 0.015 s
 
 # 1000 elementer
-# - 0.14 s
+# - 0.10 s
 
 # 5000 elementer
-# - 3.46 s
+# - 2.8 s
 
 # 10 000 elementer
-# - 13.21 s
+# - 11.0 s
 
 # 20 000 elementer
-# - 55.32 s
+# - 49.0 s
+

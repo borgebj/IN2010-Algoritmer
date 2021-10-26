@@ -4,6 +4,7 @@ import time
 
 # Selection Sort
 # O-notasjon: O(n^2)
+# konklusjon: Raskere enn bubble
 
 
 def createList(size):
@@ -23,8 +24,6 @@ def createList(size):
 
 
 def selectionSort(lst):
-    start = time.process_time()
-    ##################################################
     for i in range(len(lst)):
         min_indx = i
         for j in range(i + 1, len(lst)):
@@ -33,7 +32,11 @@ def selectionSort(lst):
 
         if i != min_indx:
             lst[i], lst[min_indx] = lst[min_indx], lst[i]
-    ##################################################
+
+
+def selectionSortTimer(lst):
+    start = time.process_time()
+    selectionSort(lst)
     print("\ntid:", float(time.process_time() - start), "s")
 
 
@@ -42,7 +45,7 @@ def main():
     lst = createList(size)
     print("Size:", size)
     print("unosorted", lst)
-    selectionSort(lst)
+    selectionSortTimer(lst)
     print("sorted", lst)
 
 
