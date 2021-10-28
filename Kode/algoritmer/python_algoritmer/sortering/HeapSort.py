@@ -40,7 +40,7 @@ def bubbleDown(lst, i, n):
 
 
 def BuildMaxHeap(lst, n):
-    for i in range(n//2, 0, -1):
+    for i in range(n//2, -1, -1):
         bubbleDown(lst, i, n)
 
 
@@ -59,7 +59,7 @@ def heapSortTimer(lst):
 
 
 def main():
-    size = 100000
+    size = 10
     lst = createList(size)
     print("Size:", size)
     print("unosorted", lst)

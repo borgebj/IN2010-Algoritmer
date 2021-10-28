@@ -13,12 +13,12 @@ def bubbleDown(lst, i, n):
         largest, right = right, largest
 
     if i != largest:
-        lst[i], lst[largest] = lst[largest], lst[i]
+        lst.swap(i, largest)
         bubbleDown(lst, largest, n)
 
 
 def BuildMaxHeap(lst, n):
-    for i in range(n // 2, 0, -1):
+    for i in range(n // 2, -1, -1):
         bubbleDown(lst, i, n)
 
 
@@ -27,7 +27,7 @@ def sort(lst):
     BuildMaxHeap(lst, n)
 
     for i in range(n - 1, 0, -1):
-        lst[0], lst[i] = lst[i], lst[0]
+        lst.swap(0, i)
         bubbleDown(lst, 0, i)
     return lst
 # endregion

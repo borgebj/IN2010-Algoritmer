@@ -1,14 +1,6 @@
-\venv
-/venv
-*.xml
-*venv
-*.class
-*.idea
-*.xml
 .xml
-.idea/
+*.xml
 .class
+*.class
 .iml
-.xml
-.idea\misc.iml
-IN2010-Algoritmer.iml
+*.iml

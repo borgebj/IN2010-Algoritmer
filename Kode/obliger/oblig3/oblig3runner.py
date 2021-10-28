@@ -1,16 +1,14 @@
-from obliger.oblig3.countcompares import CountCompares
-from obliger.oblig3.countswaps import CountSwaps
-from obliger.oblig3 import insertion
-from obliger.oblig3 import quick
-from obliger.oblig3 import bubble
-from obliger.oblig3 import heap
+import insertion, quick, bubble, heap
+from countswaps import CountSwaps
+from countcompares import CountCompares
+import os
 import math
 import time
 
 # The student can adjust these parameters to conduct their experiments
 
-ALGS1 = [insertion.sort, quick.sort]
-ALGS2 = [insertion.sort, quick.sort]
+ALGS1 = [bubble.sort, insertion.sort, heap.sort, quick.sort]
+ALGS2 = [bubble.sort, insertion.sort, heap.sort, quick.sort]
 
 TIME_LIMIT_MS = 100
 INCREMENT = 1
@@ -23,9 +21,10 @@ def algname(alg):
 
 # Run all sorting algorithms and create .out files
 def run_algs_part1(A, infilename):
+    folder = os.path.join('/Users/borge/Documents/GitHub/IN2010-Algoritmer/Kode/obliger/oblig3', 'outputs')
     for alg in ALGS1:
         countA = CountSwaps([CountCompares(x) for x in A])
-        outfilename = infilename + '_' + algname(alg) + '.out'
+        outfilename = os.path.join(folder, infilename + '_' + algname(alg) + '.out')
         outstr = '\n'.join(map(str, alg(countA)))
         with open(outfilename, 'w') as f:
             f.write(outstr)

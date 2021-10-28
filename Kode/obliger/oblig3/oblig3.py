@@ -1,5 +1,5 @@
 import sys
-from obliger.oblig3 import oblig3runner
+import oblig3runner
 
 
 def main(filename):

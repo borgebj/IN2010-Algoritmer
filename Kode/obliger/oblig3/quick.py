@@ -2,17 +2,18 @@ import statistics
 
 
 # region Quick-Sort
-def choosePivot(lst, low, high):
-    first = low
+def medianOfThree(lst, low, high):
+    first = lst[low]
     middle = lst[len(lst) // 2]
-    last = high
-    print(statistics.median[first, middle, last])
-    return statistics.median([first, middle, last])
+    last = lst[high]
+
+    pivot = statistics.median([first, middle, last])
+
+    return lst.index(pivot)
 
 
 def partition(lst, low, high):
-    p = choosePivot(lst, low, high)
-    # lst[p], lst[high] = lst[high], lst[p]
+    p = medianOfThree(lst, low, high)
     lst.swap(p, high)
     pivot = lst[high]
     left = low
@@ -26,10 +27,8 @@ def partition(lst, low, high):
             right = right - 1
 
         if left < right:
-            # lst[left], lst[right] = lst[right], lst[left]
             lst.swap(left, right)
 
-    # lst[left], lst[high] = lst[high], lst[left]
     lst.swap(left, high)
     return left
 
@@ -46,8 +45,8 @@ def quicksort(lst, low, high):
 
 
 def sort(lst):
-    print(lst)
+    n = len(lst)
     low = 0
-    high = len(lst) - 1
+    high = n - 1
     return quicksort(lst, low, high)
 # endregion

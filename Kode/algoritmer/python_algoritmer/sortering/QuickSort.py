@@ -25,9 +25,9 @@ def createList(size):
 
 
 def choosePivot(lst, low, high):
-    first = low
+    first = lst[low]
     middle = lst[len(lst) // 2]
-    last = high
+    last = lst[high]
     return statistics.median([first, middle, last])
 
 
@@ -70,12 +70,12 @@ def quickSortTimer(lst, low, high):
 
 
 def main():
-    size = 500000
+    size = 10
     lst = createList(size)
     print("Size:", size)
-    # print("unosorted", lst)
+    print("unosorted", lst)
     quickSortTimer(lst, 0, len(lst)-1)
-    # print("sorted", lst)
+    print("sorted", lst)
 
 
 main()
