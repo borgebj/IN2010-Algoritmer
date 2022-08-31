@@ -7,8 +7,8 @@ import time
 
 # The student can adjust these parameters to conduct their experiments
 
-ALGS1 = [bubble.sort, insertion.sort, heap.sort, quick.sort]
-ALGS2 = [bubble.sort, insertion.sort, heap.sort, quick.sort]
+ALGS1 = [heap.sort, quick.sort]
+ALGS2 = [heap.sort, quick.sort]
 
 TIME_LIMIT_MS = 100
 INCREMENT = 1
