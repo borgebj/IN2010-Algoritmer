@@ -47,7 +47,7 @@ def BuildMaxHeap(lst, n):
 def heapSort(lst):
     n = len(lst)
     BuildMaxHeap(lst, n)
-    for i in range(n-1, 0, -1):
+    for i in range(n-1, -1, -1):
         lst[0], lst[i] = lst[i], lst[0]
         bubbleDown(lst, 0, i)
 

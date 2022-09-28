@@ -26,7 +26,7 @@ class AdjacencyList:
 
         # legger til kanter med vekt
         self.graph[a][b] = weight
-        self.graph[b][a] = weight
+        self.graph[b][a] = weightn
 
         # legger til kante-par og vekter i egen ordbok
         self.edges[(a, b)] = weight

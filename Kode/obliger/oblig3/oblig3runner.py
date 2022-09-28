@@ -1,14 +1,13 @@
 import insertion, quick, bubble, heap
 from countswaps import CountSwaps
 from countcompares import CountCompares
-import os
 import math
 import time
 
 # The student can adjust these parameters to conduct their experiments
 
-ALGS1 = [bubble.sort, insertion.sort, heap.sort, quick.sort]
-ALGS2 = [bubble.sort, insertion.sort, heap.sort, quick.sort]
+ALGS1 = [heap.sort, quick.sort]
+ALGS2 = [heap.sort, quick.sort]
 
 TIME_LIMIT_MS = 100
 INCREMENT = 1
@@ -19,15 +18,25 @@ def algname(alg):
     return alg.__module__
 
 
+def checkIfSorted(A):
+    for i in range(len(A) - 1):
+        if A[i] > A[i + 1]:
+            print("Feil!", A[i], A[i + 1])
+            return False
+    return True
+
+
 # Run all sorting algorithms and create .out files
 def run_algs_part1(A, infilename):
-    folder = os.path.join('/Users/borge/Documents/GitHub/IN2010-Algoritmer/Kode/obliger/oblig3', 'outputs')
     for alg in ALGS1:
         countA = CountSwaps([CountCompares(x) for x in A])
-        outfilename = os.path.join(folder, infilename + '_' + algname(alg) + '.out')
+        outfilename = infilename + '_' + algname(alg) + '.out'
         outstr = '\n'.join(map(str, alg(countA)))
         with open(outfilename, 'w') as f:
             f.write(outstr)
+
+        print(algname(alg) + "> sorted: ", checkIfSorted(countA))  # sjekker om listen er sortert
+        print(countA)
 
 
 # Generate the header for the given sorting algorithm

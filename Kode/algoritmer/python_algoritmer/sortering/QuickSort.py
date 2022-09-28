@@ -70,7 +70,7 @@ def quickSortTimer(lst, low, high):
 
 
 def main():
-    size = 10
+    size = 50000
     lst = createList(size)
     print("Size:", size)
     print("unosorted", lst)

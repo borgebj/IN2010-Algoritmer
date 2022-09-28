@@ -1,19 +1,13 @@
-import statistics
+import random
 
 
 # region Quick-Sort
-def medianOfThree(lst, low, high):
-    first = lst[low]
-    middle = lst[len(lst) // 2]
-    last = lst[high]
-
-    pivot = statistics.median([first, middle, last])
-
-    return lst.index(pivot)
+def randomPivot(low, high):
+    return random.randrange(low, high)
 
 
 def partition(lst, low, high):
-    p = medianOfThree(lst, low, high)
+    p = randomPivot(low, high)
     lst.swap(p, high)
     pivot = lst[high]
     left = low

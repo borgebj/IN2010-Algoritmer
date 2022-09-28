@@ -30,27 +30,27 @@ def drawDjikstra(graph, parents):
 
 
 # lambda: float vil si at dicten har default-verdi float
+# for å finne korteste vei
 def Dijkstra(graph, s):
     queue = [(0, s)]
-    heapify(queue)
     dist = defaultdict(lambda: float('inf'))
     parents = {s: None}
     dist[s] = 0
 
     while queue:
-        heapify(queue)
-        cost, node = heappop(queue)
+        cost, node = queue.pop(0)
 
         for nabo in graph[node]:
             c = cost + graph[nabo][node]
             if c < dist[nabo]:
                 dist[nabo] = c
-                heappush(queue, (c, nabo))
+                queue.append((c, nabo))
                 parents[nabo] = node
 
     return parents, dist
 
 
+# for å finne lengste vei
 def DijkstraHeaviest(graph, s):
     visited = [s]
     queue = [(0, s)]
@@ -93,13 +93,12 @@ def main():
     # graf-del
     print("< Opprettet med graf med maks 10 kanter >")
     fillRandom(graph)
-    graph.drawgraph()
     print("---------------")
 
     # dijkstra-del
     print("Dijkstra traversering for korteste vei")
     fort = ""
-    while fort != "stop":
+    while fort != "stop" or fort != "nei":
         valg = input("minst | størst: ")
         start = input("Start: ")
         slutt = input("Slutt: ")
