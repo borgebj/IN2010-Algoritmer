@@ -204,7 +204,6 @@ public class AVLTree {
     // broken metode - printer ut et FINT tre https://stackoverflow.com/questions/4965335/how-to-print-binary-tree-diagram-in-java
     public void print() {
         List<List<String>> lines = new ArrayList<List<String>>();
-
         List<Node> level = new ArrayList<Node>();
         List<Node> next = new ArrayList<Node>();
 
